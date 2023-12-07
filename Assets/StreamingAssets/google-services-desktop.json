@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "511375870033",
+    "project_id": "roken-city-racer",
+    "storage_bucket": "roken-city-racer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511375870033:android:5618de5c54ad46c8da9070",
+        "android_client_info": {
+          "package_name": "com.fooplix.rokencity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511375870033-b2ir733ut575hp875bmtbst41q72q7q5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fooplix.rokencity",
+            "certificate_hash": "677588fc3afbb4f197b9a2734875eb0c46ecd739"
+          }
+        },
+        {
+          "client_id": "511375870033-c0cqdaefopg1m413i2u1sgembphh6g32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoLrfuM6iPfVE8KLdWxhSJFT3J92p6A8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511375870033-c0cqdaefopg1m413i2u1sgembphh6g32.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "511375870033-obflgm7nfq7j52rlodfviqra0qsl4ccc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fooplix.rokencity"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

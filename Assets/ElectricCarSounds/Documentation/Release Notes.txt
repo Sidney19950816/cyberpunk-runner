@@ -1,0 +1,41 @@
+Electric Car Sounds release notes:
+
+v1.0.5
+- Added compatibility for Arcade Car Controller
+-----------------------------------------------------------------------------------------------
+v1.0.4
+- Updated NWH2 compatibility to the latest version
+-----------------------------------------------------------------------------------------------
+v1.0.3
+- Added compatibility for Realistic Car Controller Pro
+- Added a 3D sound tester scene (adopted from my other asset Realistic Engine Sounds 2)
+- Added an option to change Audio Velocity Update Mode
+- Updated UVC compatibility to the latest version
+- Updated NWH2 compatibility to the latest version
+- Updated RCC compatibility to the latest version
+- Fixed audio stuttering bug with FGear vehicles. Change "Audio Velocity Update Mode" between "Dynamic" and "Fixed" mode to see which one will solve the problem. Different type vehicles may need different "Audio Velocity Update Mode"
+- Fixed a bug that rarely caused duplicate audio sources
+- Fixed a compatibility issue with my other asset "Realistic Engine Sounds 2"
+- Updated Documentation.pdf
+-----------------------------------------------------------------------------------------------
+v1.0.2
+- Added a new wind noise sfx (+2 wav files)
+- Small fixes and changes in editor script, added "About" menu, added a welcome message and removed asset version checker
+-----------------------------------------------------------------------------------------------
+
+v1.0.1
+- Fixed looping problems in some wav files
+- Small fixes in editor script
+-----------------------------------------------------------------------------------------------
+
+v1.0.0
+- Added 6 new electric car sound packs (+72 wav files)
+- Added compatibility for the following vehicle physics controllers: Driver, EVP, FGear, iRDS, MSK, MSVS-Free, NWH, NWH2, RCC, RCK, RVP2, Unity Car Pro, Unity Standard Assets Car, UVC, VPP
+- Added an option to choose enabling / disabling automatically finding the right AudioListener for the prefabs. When disabled it needs to be set manually
+- Fixed looping problems in some audio files
+- In demo scenes from now it is visible currently which sound pack is selected
+- Moved raw ECS prefabs into a new folder called like "Raw Prefabs". Now raw prefabs can be found here: ElectricCarSounds\Assets\Prefabs\Raw Prefabs\
+-----------------------------------------------------------------------------------------------
+
+v0.9.0
+- First release

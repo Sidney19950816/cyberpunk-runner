@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"bebdce36-1ec2-40f4-9290-6144b2e30406\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"CURRENCIES\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"currencyData\": [\r\n         
+    [\r\n            {\r\n              \"id\": \"ROKEN\",\r\n              \"count\":
+    \"10\"\r\n            }\r\n          ],\r\n          [\r\n            {\r\n             
+    \"id\": \"BIOCHIP\",\r\n              \"count\": \"0\"\r\n            }\r\n         
+    ]\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
+    \"entityId\": \"29e0c8f5-87ed-4553-b3f3-7d593850862f\"\r\n    },\r\n    \"rs\":
+    {\r\n      \"key\": \"BIKES\",\r\n      \"type\": \"json\",\r\n      \"schemaId\":
+    null,\r\n      \"value\": {\r\n        \"id\": 1,\r\n        \"name\": \"Default\",\r\n       
+    \"description\": \"Default\",\r\n        \"price\": 0,\r\n        \"isPurchased\":
+    true,\r\n        \"topSpeed\": 60,\r\n        \"acceleration\": 7,\r\n       
+    \"braking\": 6,\r\n        \"steer\": 5,\r\n        \"minRokenSpeedRequirement\":
+    40,\r\n        \"baseRokenAmount\": 1,\r\n        \"topSpeedRokenMultiplier\":
+    60,\r\n        \"rampRokenBonus\": 3\r\n      }\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"bebdce36-1ec2-40f4-9290-6144b2e30406\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"CURRENCIES\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"currencyData\": [\r\n         
+    [\r\n            {\r\n              \"id\": \"ROKEN\",\r\n              \"count\":
+    \"10\"\r\n            }\r\n          ],\r\n          [\r\n            {\r\n             
+    \"id\": \"BIOCHIP\",\r\n              \"count\": \"0\"\r\n            }\r\n         
+    ]\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
+    \"entityId\": \"29e0c8f5-87ed-4553-b3f3-7d593850862f\"\r\n    },\r\n    \"rs\":
+    {\r\n      \"key\": \"BIKES\",\r\n      \"type\": \"json\",\r\n      \"schemaId\":
+    null,\r\n      \"value\": {\r\n        \"id\": 1,\r\n        \"name\": \"Default\",\r\n       
+    \"description\": \"Default\",\r\n        \"price\": 0,\r\n        \"isPurchased\":
+    true,\r\n        \"topSpeed\": 60,\r\n        \"acceleration\": 7,\r\n       
+    \"braking\": 6,\r\n        \"steer\": 5,\r\n        \"minRokenSpeedRequirement\":
+    40,\r\n        \"baseRokenAmount\": 1,\r\n        \"topSpeedRokenMultiplier\":
+    60,\r\n        \"rampRokenBonus\": 3\r\n      }\r\n    }\r\n  }\r\n]"
+  _environments: "[\r\n  {\r\n    \"projectId\": \"f6af1143-454a-4c2d-ae87-723971370f23\",\r\n   
+    \"name\": \"development\",\r\n    \"id\": \"cc9bda0f-e7ab-4c78-b4a3-dfe68f9dc2d6\",\r\n   
+    \"isDefault\": false,\r\n    \"createdAt\": \"2023-01-27T10:53:20Z\",\r\n   
+    \"updatedAt\": \"2023-01-27T10:53:20Z\"\r\n  },\r\n  {\r\n    \"projectId\":
+    \"f6af1143-454a-4c2d-ae87-723971370f23\",\r\n    \"name\": \"production\",\r\n   
+    \"id\": \"d97a10f9-e206-41f5-b800-d2ec119efc6d\",\r\n    \"isDefault\": true,\r\n   
+    \"createdAt\": \"2022-05-07T05:23:59Z\",\r\n    \"updatedAt\": \"2022-05-07T05:23:59Z\"\r\n 
+    }\r\n]"

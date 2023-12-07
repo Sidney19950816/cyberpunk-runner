@@ -1,0 +1,1 @@
+You can include ECS_logo.png in your game's intro or loading screen to show your customers that you're using "Electric Car Sounds" Unity asset.

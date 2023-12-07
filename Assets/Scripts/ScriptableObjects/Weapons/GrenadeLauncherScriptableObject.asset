@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c77d97e09b17a24083306110a909f7b, type: 3}
+  m_Name: GrenadeLauncherScriptableObject
+  m_EditorClassIdentifier: 
+  _id: 2
+  _weaponName: Grenade Launcher
+  _weaponDescription: Test
+  _weaponPrice: 1
+  _projectileType: 0
+  _projectilesCount: 5
+  _fireRate: 1
+  _reloadDelay: 1
+  _projectileLoadSpeed: 0.5
+  _projectileSpeed: 100
+  _weaponObject: {fileID: 1882585320748724, guid: 348818f667510814d849561cb9b1707b, type: 3}
+  _projectileObject: {fileID: 1882585320748724, guid: 5cac8f039a156dd4b82c9fd6fa472295, type: 3}

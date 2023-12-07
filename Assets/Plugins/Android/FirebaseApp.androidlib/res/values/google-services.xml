@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">511375870033</string>
+  <string name="google_storage_bucket" translatable="false">roken-city-racer.appspot.com</string>
+  <string name="project_id" translatable="false">roken-city-racer</string>
+  <string name="google_api_key" translatable="false">AIzaSyDoLrfuM6iPfVE8KLdWxhSJFT3J92p6A8s</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDoLrfuM6iPfVE8KLdWxhSJFT3J92p6A8s</string>
+  <string name="google_app_id" translatable="false">1:511375870033:android:5618de5c54ad46c8da9070</string>
+  <string name="default_android_client_id" translatable="false">511375870033-b2ir733ut575hp875bmtbst41q72q7q5.apps.googleusercontent.com</string>
+  <string name="default_web_client_id" translatable="false">511375870033-c0cqdaefopg1m413i2u1sgembphh6g32.apps.googleusercontent.com</string>
+</resources>
