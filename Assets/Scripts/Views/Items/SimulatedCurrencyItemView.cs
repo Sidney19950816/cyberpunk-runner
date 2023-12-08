@@ -8,15 +8,15 @@ public class SimulatedCurrencyItemView : MonoBehaviour
 
     public CurrencyType CurrencyType { get { return currencyType; } }
 
-    private long currentBalance;
+    private int currentBalance;
 
-    public void SetBalance(long balance)
+    public void SetBalance(int balance)
     {
-        currentBalance += balance;
+        currentBalance = balance;
         balanceField.text = currentBalance.ToString();
     }
 
-    public long GetBalance()
+    public int GetBalance()
     {
         return currentBalance;
     }

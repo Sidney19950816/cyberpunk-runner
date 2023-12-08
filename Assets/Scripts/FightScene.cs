@@ -145,10 +145,10 @@ namespace Assets.Scripts
                 e.gameObject.SetActive(true);
                 e.OnDeathAction += OnEnemyKill;
                 e.SetHealth(Bike.GetPassedChunksCount());
-                e.SetAimTarget(Bike.Player.transform);
+                e.Aim.Set(Bike.Player.transform);
             }
 
-            Bike.Player.SetAimTarget(GetCenterEnemy().transform);
+            Bike.Player.Aim.Set(GetCenterEnemy().transform);
         }
 
         protected override void OnSceneEnd()
@@ -157,7 +157,7 @@ namespace Assets.Scripts
 
             _fightStarted = false;
             Bike.Collider.enabled = true;
-            Bike.Player.ResetAimTarget();
+            Bike.Player.Aim.Reset();
         }
     }
 }

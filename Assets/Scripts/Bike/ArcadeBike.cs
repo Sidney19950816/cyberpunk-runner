@@ -552,14 +552,14 @@ namespace Assets.Scripts
         {
             if (Rigidbody.velocity.magnitude * 3.6f > _rokenStats.MinRokenSpeed)
             {
-                double currentSpeed = Math.Round(Rigidbody.velocity.magnitude * 3.6f);
+                float currentSpeed = Mathf.Round(Rigidbody.velocity.magnitude * 3.6f);
 
-                double valueToAdd = Math.Round(_rokenStats.BaseRokenValue + ((currentSpeed - _rokenStats.MinRokenSpeed) / 10));
+                int valueToAdd = Mathf.RoundToInt(_rokenStats.BaseRokenValue + ((currentSpeed - _rokenStats.MinRokenSpeed) / 10));
 
                 if (currentSpeed >= BikeStats.TopSpeed)
-                    Player.OnEarnedRokens?.Invoke((long)(valueToAdd * _rokenStats.TopSpeedRokenMultiplicator));
+                    Player.Score.Add(valueToAdd * _rokenStats.TopSpeedRokenMultiplicator);
                 else
-                    Player.OnEarnedRokens?.Invoke((long)valueToAdd);
+                    Player.Score.Add(valueToAdd);
             }
         }
 

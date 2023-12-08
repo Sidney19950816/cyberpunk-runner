@@ -20,14 +20,14 @@ public class GameOverState : BaseState
 
     public void SetMainMenuState()
     {
-        Bike.Player.CollectEarnedRokens();
+        Bike.Player.CollectRokens();
         GameSceneManager.Instance.RestartScene();
     }
 
     public void OnWatchAdButtonClick()
     {
         GoogleMobileAdsController.Instance?.RewardedAdController?.ShowAd(() => {
-            Bike.Player.CollectEarnedRokens(2);
+            Bike.Player.CollectRokens(2);
             GameSceneManager.Instance.RestartScene();
         });
     }

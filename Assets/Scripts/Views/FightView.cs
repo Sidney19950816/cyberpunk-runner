@@ -51,7 +51,7 @@ public class FightView : BaseView
         foreach (Enemy e in fightState.Enemies)
         {
             e.OnHeadshot += () => OnEnemyHeadshot(player);
-            e.OnDeathAction += (e) => player.OnEarnedRokens?.Invoke(player.Weapon.WeaponParameters.RokensPerKill);
+            e.OnDeathAction += (e) => player.Score.Add(player.Weapon.WeaponParameters.RokensPerKill);
         }
     }
 
@@ -109,7 +109,7 @@ public class FightView : BaseView
     {
         PlayerWeapon.WeaponParams weaponParams = player.Weapon.WeaponParameters;
         headshotMultiplier = weaponParams.HeadshotMultiplier > 1 ? headshotMultiplier : 1;
-        player.OnEarnedRokens?.Invoke(weaponParams.RokensPerKill * headshotMultiplier);
+        player.Score.Add(weaponParams.RokensPerKill * headshotMultiplier);
 
         if (weaponParams.HeadshotMultiplier > 1)
             headshotMultiplier++;

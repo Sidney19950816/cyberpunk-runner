@@ -1,5 +1,6 @@
 public interface IScoreable
 {
-    void AddScore(long score);
-    void ResetScore();
+    int Score { get; }
+    void Add(int score);
+    void Reset();
 }

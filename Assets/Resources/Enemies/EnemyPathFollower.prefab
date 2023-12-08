@@ -18743,6 +18743,7 @@ GameObject:
   - component: {fileID: 2724735990405047043}
   - component: {fileID: 6706104755505636710}
   - component: {fileID: 3611974981115747818}
+  - component: {fileID: 2478176194709059109}
   m_Layer: 0
   m_Name: Enemy_Ragdoll (1)
   m_TagString: Enemy
@@ -19374,6 +19375,19 @@ MonoBehaviour:
   _endOfPathInstruction: 2
   _projectileDelay: 2
   fightSceneDistance: 10
+--- !u!114 &2478176194709059109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213857342294983456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54c71e09e5e20448b59476e049374ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLaser: {fileID: 2052937285715467682}
 --- !u!1 &3278199345168059848
 GameObject:
   m_ObjectHideFlags: 0

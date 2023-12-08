@@ -52,7 +52,7 @@ public class GameView : BaseView
             simulatedCurrencyItem.SetBalance(0);
             if (gameState.Bike != null)
             {
-                gameState.Bike.Player.OnEarnedRokens += simulatedCurrencyItem.SetBalance;
+                gameState.Bike.Player.Score.OnUpdate += simulatedCurrencyItem.SetBalance;
                 gameState.Bike.OnHealthUpdate += UpdateHealthValue;
 
                 healthSlider.value = healthSlider.maxValue = gameState.Bike.BikeStats.MaxHealth;

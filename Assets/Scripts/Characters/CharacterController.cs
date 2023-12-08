@@ -66,12 +66,5 @@ namespace Assets.Scripts
                 r.mass = 10;
             }
         }
-
-        public virtual void SetAimTarget(Transform target)
-        {
-            AimIK.enabled = true;
-            AimController.enabled = true;
-            Animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-        }
     }
 }

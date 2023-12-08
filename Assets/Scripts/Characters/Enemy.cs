@@ -17,6 +17,8 @@ namespace Assets.Scripts
         [SerializeField] private float _maxHealth;
         [SerializeField] private Image _healthBar;
 
+        private EnemyAim _enemyAim;
+
         public Action<Enemy> OnDeathAction;
         public Action OnHeadshot;
 
@@ -24,6 +26,8 @@ namespace Assets.Scripts
 
         public GameObject Head => _head;
         public EnemyWeapon Weapon => weapon;
+
+        public EnemyAim Aim => _enemyAim;
 
         public float Health { get; private set; }
         public float MaxHealth { get { return _maxHealth; } }
@@ -45,6 +49,8 @@ namespace Assets.Scripts
             _healthBar.transform.parent.SetActive(false);
 
             Weapon.WeaponLaser?.SetActive(false);
+            _enemyAim = GetComponent<EnemyAim>()
+                .With(e => e.Initialize(Animator, IK, AimController));
         }
 
         private void OnEnable()
@@ -79,93 +85,6 @@ namespace Assets.Scripts
             Health = MaxHealth;
 
             _healthBar.transform.parent.SetActive(true);
-        }
-
-        public override void SetAimTarget(Transform target)
-        {
-            base.SetAimTarget(target);
-
-            StartCoroutine(SetIKLowerBodyWeightCoroutine(1, 0, 1));
-            StartCoroutine(SetIKUpperBodyWeightCoroutine(1, 0, 3));
-            StartCoroutine(WaitForTarget(target, 1));
-
-            Weapon.WeaponLaser?.SetActive(true);
-        }
-
-        private IEnumerator WaitForTarget(Transform target, float duration)
-        {
-            float elapsedTime = 0f;
-            float randomDuration = UnityEngine.Random.Range(0, 0.5f);
-
-            while (elapsedTime < duration)
-            {
-                transform.LookAt(target);
-
-                if(elapsedTime > randomDuration)
-                    Animator.SetFloat(AIM_FORWARD, 1);
-
-                elapsedTime += Time.deltaTime / Time.timeScale;
-                yield return null;
-            }
-
-            if (AimController != null)
-                AimController.target = target;
-        }
-
-        private IEnumerator SetIKLowerBodyWeightCoroutine(float startValue, float targetValue, float duration)
-        {
-            float elapsedTime = 0f;
-
-            while (elapsedTime < duration)
-            {
-                SetIKLowerBodyWeight(Mathf.Lerp(startValue, targetValue, elapsedTime / duration));
-
-                elapsedTime += Time.deltaTime / Time.timeScale;
-                yield return null;
-            }
-
-            SetIKLowerBodyWeight(targetValue);
-        }
-
-        private IEnumerator SetIKUpperBodyWeightCoroutine(float startValue, float targetValue, float duration)
-        {
-            float elapsedTime = 0f;
-
-            while (elapsedTime < duration)
-            {
-                SetIKUpperBodyWeight(Mathf.Lerp(startValue, targetValue, elapsedTime / duration));
-
-                elapsedTime += Time.deltaTime / Time.timeScale;
-                yield return null;
-            }
-
-            SetIKUpperBodyWeight(targetValue);
-        }
-
-        private void SetIKLowerBodyWeight(float value)
-        {
-            IK.solver.bodyEffector.positionWeight = value;
-
-            IK.solver.rightFootEffector.positionWeight = value;
-            IK.solver.rightFootEffector.rotationWeight = value;
-
-            IK.solver.leftFootEffector.positionWeight = value;
-            IK.solver.leftFootEffector.rotationWeight = value;
-        }
-
-        private void SetIKUpperBodyWeight(float value)
-        {
-            IK.solver.rightShoulderEffector.positionWeight = value;
-            IK.solver.rightHandEffector.positionWeight = value;
-            IK.solver.rightHandEffector.rotationWeight = value;
-            IK.solver.rightArmMapping.weight = value;
-            IK.solver.rightArmChain.pull = value;
-
-            IK.solver.leftShoulderEffector.positionWeight = value;
-            IK.solver.leftHandEffector.positionWeight = value;
-            IK.solver.leftHandEffector.rotationWeight = value;
-            IK.solver.leftArmMapping.weight = value;
-            IK.solver.leftArmChain.pull = value;
         }
 
         public void TakeDamage(float amount = 0)

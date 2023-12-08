@@ -1106,6 +1106,7 @@ GameObject:
   - component: {fileID: -243550612468113857}
   - component: {fileID: -7546392878144227417}
   - component: {fileID: 8035892762165703106}
+  - component: {fileID: 1957852955909596461}
   m_Layer: 0
   m_Name: Enemy_Ragdoll
   m_TagString: Enemy
@@ -1730,6 +1731,19 @@ MonoBehaviour:
   turnToTargetTime: 0.2
   useAnimatedAimDirection: 0
   animatedAimDirection: {x: 0, y: 0, z: 1}
+--- !u!114 &1957852955909596461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165120240151320452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54c71e09e5e20448b59476e049374ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponLaser: {fileID: 3380119535591213318}
 --- !u!1 &2165131563199044318
 GameObject:
   m_ObjectHideFlags: 0

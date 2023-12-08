@@ -80,7 +80,7 @@ public class GameOverView : BaseView
         watchAdButton.onClick.AddListener(AudioManager.Instance.PlayUIButtonSound);
         watchAdButton.onClick.AddListener(SendOnGameOverEvent);
 
-        earnedRokensValueText.text = gameOverState.Bike.Player.EarnedRokens.ToString();
+        earnedRokensValueText.text = gameOverState.Bike.Player.Rokens.ToString();
 
         if (shopView != null)
         {
