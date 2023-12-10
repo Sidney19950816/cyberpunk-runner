@@ -65,7 +65,7 @@ namespace Assets.Scripts
             {
                 fightSceneStarted = true;
                 fightSceneWeapon.SetActive(true);
-                weapon = fightSceneWeapon;
+                _weapon = fightSceneWeapon;
 
                 _fightScene.BeginScene(playerBike);
             }
@@ -91,15 +91,11 @@ namespace Assets.Scripts
             distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.parent.position);
         }
 
-        protected override IEnumerator DestroyOnDelay()
+        protected override void OnDeath()
         {
-            yield return new WaitForSeconds(1f);
+            base.OnDeath();
+
             Destroy(transform.parent.gameObject);
         }
-        //protected override void OnDeath()
-        //{
-        //    base.OnDeath();
-        //    Destroy(transform.parent.gameObject);
-        //}
     }
 }

@@ -10,12 +10,9 @@ public class FightView : BaseView
 {
     [Space, Header("BULLETS")]
     [SerializeField] private TextMeshProUGUI bulletsCountText;
-    //[SerializeField] private Transform bulletLayout;
 
     [Space, Header("SLIDERS")]
     [SerializeField] private Slider remainingTimeSlider;
-
-    //private List<GameObject> bulletsList = new();
 
     private int headshotMultiplier;
 
@@ -50,8 +47,9 @@ public class FightView : BaseView
 
         foreach (Enemy e in fightState.Enemies)
         {
-            e.OnHeadshot += () => OnEnemyHeadshot(player);
-            e.OnDeathAction += (e) => player.Score.Add(player.Weapon.WeaponParameters.RokensPerKill);
+            e.Head.OnHeadshot += () => OnEnemyHeadshot(player); // TODO
+            e.GetComponent<EnemyDeath>().Died += () 
+                => player.Score.Add(player.Weapon.WeaponParameters.RokensPerKill); // TODO
         }
     }
 
@@ -70,33 +68,8 @@ public class FightView : BaseView
         remainingTimeSlider.gameObject.SetActive(remainingTimeSlider.value > 0);
     }
 
-    //private void UpdateProjectile(int value)
-    //{
-    //    bool state = value < 0 ? true : false;
-    //    var bullets = bulletsList.Where(c => c.activeSelf == state);
-    //    bullets.FirstOrDefault()?.gameObject.SetActive(!state);
-    //    int count = state ? bullets.Count() : (bulletsList.Count - bullets.Count());
-    //    bulletsCountText.SetText(count.ToString());
-    //}
-
     private void SetBulletsCount(int bulletsCount)
     {
-        //if (bulletsList.Count == 0)
-        //{
-        //    for (var i = 0; i < bulletsCount; i++)
-        //    {
-        //        var bullet = Instantiate(Resources.Load("UI/BulletImage"), bulletLayout) as GameObject;
-        //        bulletsList.Add(bullet);
-        //    }
-        //}
-        //else
-        //{
-        //    for (int i = 0; i < bulletsList.Count; i++)
-        //    {
-        //        bulletsList[i].gameObject.SetActive(true);
-        //    }
-        //}
-
         bulletsCountText.text = bulletsCount.ToString();
     }
 

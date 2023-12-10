@@ -6,21 +6,23 @@ namespace Assets.Scripts
     public class EnemyWeapon : Weapon
     {
         [Space, Header("LASER")]
-        [SerializeField] private WeaponLaser weaponLaser;
+        [SerializeField] private WeaponLaser _weaponLaser;
 
         [Space, Header("PARTICLES")]
-        [SerializeField] private ParticleSystem flashParticleSystem;
+        [SerializeField] private ParticleSystem _flashParticleSystem;
 
-        public WeaponLaser WeaponLaser => weaponLaser;
+        private void Start()
+        {
+            _weaponLaser?.SetActive(false);
+        }
 
         public void Fire(Transform target)
         {
             var projectile = GetProjectile(false);
             projectile.GetComponent<Projectile>().Initialize(target);
-            WeaponLaser?.SetActive(false);
 
-            if(flashParticleSystem != null)
-                Instantiate(flashParticleSystem, ProjectileSpawnPoint.position, transform.rotation);
+            if(_flashParticleSystem != null)
+                Instantiate(_flashParticleSystem, ProjectileSpawnPoint.position, transform.rotation);
             audioSource?.PlayOneShot(weaponFireAudio);
         }
 

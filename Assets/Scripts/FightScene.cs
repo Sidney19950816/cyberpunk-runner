@@ -50,12 +50,12 @@ namespace Assets.Scripts
                 }
             }
         }
-    
-        private void OnEnemyKill(Enemy enemy)
+
+        private void OnEnemyKill()
         {
-            if(_fightStarted)
+            if (_fightStarted)
             {
-                _enemies.Remove(enemy);
+                _enemies.Remove(_enemies.FirstOrDefault(e => e.Health.Current <= 0));
 
                 if (_enemies.Count <= 0)
                 {
@@ -63,7 +63,6 @@ namespace Assets.Scripts
                 }
             }
 
-            enemy.OnDeathAction -= OnEnemyKill;
             EventsService.EnemyTypeAsync(Bike.GetPassedChunksCount() / RemoteConfigManager.Instance.EnemyHealthIncreaseInterval + 1);
         }
 
@@ -143,8 +142,8 @@ namespace Assets.Scripts
             foreach (var e in _enemies)
             {
                 e.gameObject.SetActive(true);
-                e.OnDeathAction += OnEnemyKill;
-                e.SetHealth(Bike.GetPassedChunksCount());
+                e.GetComponent<EnemyDeath>().Died += OnEnemyKill;
+                e.GetComponent<IHealth>().InitializeHealth(Bike.GetPassedChunksCount());
                 e.Aim.Set(Bike.Player.transform);
             }
 

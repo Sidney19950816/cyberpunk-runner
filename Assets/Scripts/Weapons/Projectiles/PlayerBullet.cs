@@ -37,14 +37,14 @@ namespace Assets.Scripts
             if (enemy != null)
             {
                 float critPercentage = weaponParams.CritChance;
-                float critChance = Random.value < critPercentage / 100 ? (enemy.MaxHealth * critPercentage) / 100 : 0;
-                if (other.gameObject.Equals(enemy.Head))
+                float critChance = Random.value < critPercentage / 100 ? (enemy.Health.Max * critPercentage) / 100 : 0;
+                if (other.gameObject.GetComponent<EnemyHead>() != null)
                 {
-                    enemy.OnHeadshot?.Invoke();
+                    enemy.Head.HandleHeadshot();
                 }
                 else
                 {
-                    enemy.TakeDamage(weaponParams.Damage + critChance);
+                    enemy.Health.TakeDamage(weaponParams.Damage + critChance);
                 }
 
                 if (other.TryGetComponent(out Rigidbody rb))
