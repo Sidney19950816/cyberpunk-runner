@@ -18745,7 +18745,7 @@ GameObject:
   - component: {fileID: 3611974981115747818}
   - component: {fileID: 2478176194709059109}
   m_Layer: 0
-  m_Name: Enemy_Ragdoll (1)
+  m_Name: Enemy_Ragdoll
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19364,9 +19364,7 @@ MonoBehaviour:
   _aimIk: {fileID: 2724735990405047043}
   _aimController: {fileID: 6706104755505636710}
   _head: {fileID: 3734956853854357363}
-  weapon: {fileID: 4129092573430994349}
-  _maxHealth: 150
-  _healthBar: {fileID: 7629842850355707078}
+  _weapon: {fileID: 0}
   _bikeTrigger: {fileID: 813832729189640527}
   _fightScene: {fileID: 0}
   fightSceneWeapon: {fileID: 8054311284549190222}
@@ -32005,8 +32003,8 @@ MonoBehaviour:
   _projectileSpawnPoint: {fileID: 348598381671911875}
   audioSource: {fileID: 0}
   weaponFireAudio: {fileID: 0}
-  weaponLaser: {fileID: 0}
-  flashParticleSystem: {fileID: 0}
+  _weaponLaser: {fileID: 0}
+  _flashParticleSystem: {fileID: 0}
 --- !u!1 &4558188865321651649
 GameObject:
   m_ObjectHideFlags: 0
@@ -32197,8 +32195,8 @@ MonoBehaviour:
   _projectileSpawnPoint: {fileID: 1814298118769460599}
   audioSource: {fileID: 8697972715425344619}
   weaponFireAudio: {fileID: 8300000, guid: 1bf985c681ee143599158a4476b4e824, type: 3}
-  weaponLaser: {fileID: 4062299194337187979}
-  flashParticleSystem: {fileID: 6952000609999745831, guid: 9e1e5650ebf6e4067bb3fb61a2938b56, type: 3}
+  _weaponLaser: {fileID: 0}
+  _flashParticleSystem: {fileID: 0}
 --- !u!82 &8697972715425344619
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40308,8 +40306,8 @@ MonoBehaviour:
   _projectileSpawnPoint: {fileID: 5912101123503194515}
   audioSource: {fileID: 0}
   weaponFireAudio: {fileID: 0}
-  weaponLaser: {fileID: 0}
-  flashParticleSystem: {fileID: 0}
+  _weaponLaser: {fileID: 0}
+  _flashParticleSystem: {fileID: 0}
 --- !u!1 &5912101123638947617
 GameObject:
   m_ObjectHideFlags: 0
