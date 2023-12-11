@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00041745548, g: 0.003592921, b: 0.013721907, a: 1}
+  m_IndirectSpecularColor: {r: 0.00042952376, g: 0.003613592, b: 0.013758263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2618,7 +2618,6 @@ MonoBehaviour:
   loadingObject: {fileID: 867759417}
   canvas: {fileID: 405019167976149870}
   motorbikeBattery: {fileID: 954516787}
-  volumeController: {fileID: 1049541989}
 --- !u!114 &1954319575
 MonoBehaviour:
   m_ObjectHideFlags: 0

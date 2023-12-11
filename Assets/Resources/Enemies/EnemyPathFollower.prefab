@@ -18744,6 +18744,9 @@ GameObject:
   - component: {fileID: 6706104755505636710}
   - component: {fileID: 3611974981115747818}
   - component: {fileID: 2478176194709059109}
+  - component: {fileID: 2623673648305295862}
+  - component: {fileID: 3699438826575398046}
+  - component: {fileID: 5449015206729250577}
   m_Layer: 0
   m_Name: Enemy_Ragdoll
   m_TagString: Enemy
@@ -19363,8 +19366,8 @@ MonoBehaviour:
   _ik: {fileID: 5623688996027501211}
   _aimIk: {fileID: 2724735990405047043}
   _aimController: {fileID: 6706104755505636710}
-  _head: {fileID: 3734956853854357363}
-  _weapon: {fileID: 0}
+  _head: {fileID: 6336652221994128779}
+  _weapon: {fileID: 4129092573430994349}
   _bikeTrigger: {fileID: 813832729189640527}
   _fightScene: {fileID: 0}
   fightSceneWeapon: {fileID: 8054311284549190222}
@@ -19386,6 +19389,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponLaser: {fileID: 2052937285715467682}
+--- !u!114 &2623673648305295862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213857342294983456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d97dcdaae4cec44986a39ab55be6077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _max: 100
+  _current: 100
+--- !u!114 &3699438826575398046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213857342294983456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdcf36bc3d6913f4db5c60e79389e1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 7629842850355707078}
+--- !u!114 &5449015206729250577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213857342294983456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb101bf5c32f184591ea39d760a1d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 2623673648305295862}
 --- !u!1 &3278199345168059848
 GameObject:
   m_ObjectHideFlags: 0
@@ -25603,6 +25646,7 @@ GameObject:
   - component: {fileID: 7634954004634463236}
   - component: {fileID: 7634954004634463235}
   - component: {fileID: 7634954004634463234}
+  - component: {fileID: 6336652221994128779}
   m_Layer: 0
   m_Name: mixamorig:Head
   m_TagString: Untagged
@@ -25720,6 +25764,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6336652221994128779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734956853854357363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1169c2e46c49f9a458ff250ddef444ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHealth: {fileID: 2623673648305295862}
 --- !u!1 &3789591339326100830
 GameObject:
   m_ObjectHideFlags: 0

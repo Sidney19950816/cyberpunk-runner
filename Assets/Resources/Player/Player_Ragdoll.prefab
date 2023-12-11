@@ -2509,6 +2509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7285363667702174446}
+  - component: {fileID: 8936547005584500282}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -2533,6 +2534,18 @@ Transform:
   m_Father: {fileID: 7280797740626581934}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 70, y: 210, z: 90}
+--- !u!114 &8936547005584500282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3705751160889283565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ab393531696f147b47eaabb0f7f19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3716550676398718686
 GameObject:
   m_ObjectHideFlags: 0
@@ -5626,7 +5639,7 @@ MonoBehaviour:
   _ik: {fileID: 6016829851398872881}
   _aimIk: {fileID: 3567296175932245947}
   _aimController: {fileID: 46757360576705131}
-  _weaponHolder: {fileID: 7285363667702174446}
+  _weaponInitializer: {fileID: 8936547005584500282}
 --- !u!114 &3567296175932245947
 MonoBehaviour:
   m_ObjectHideFlags: 0
