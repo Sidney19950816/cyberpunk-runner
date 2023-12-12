@@ -1,1 +1,0 @@
-Before importing the "Update_to_InputSystem" package, please install the InputSystem.
