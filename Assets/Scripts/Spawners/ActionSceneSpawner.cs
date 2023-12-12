@@ -11,7 +11,7 @@ namespace Assets.Scripts.Spawners
             if(spawned.Trigger != null)
             {
                 spawned.Trigger.OnTriggerT += spawned.BeginScene;
-                spawned.SetActive(true);
+                spawned.gameObject.SetActive(true);
             }
         }
 

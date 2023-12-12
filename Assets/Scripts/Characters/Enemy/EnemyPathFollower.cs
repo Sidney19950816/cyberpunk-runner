@@ -64,7 +64,7 @@ namespace Assets.Scripts
                 && !fightSceneStarted)
             {
                 fightSceneStarted = true;
-                fightSceneWeapon.SetActive(true);
+                fightSceneWeapon.gameObject.SetActive(true);
                 _weapon = fightSceneWeapon;
 
                 _fightScene.BeginScene(playerBike);

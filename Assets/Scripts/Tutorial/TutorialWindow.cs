@@ -33,19 +33,19 @@ public class TutorialWindow : MonoBehaviour
         switch(tutorialState)
         {
             case TutorialManager.TutorialState.TiltPhone:
-                leftArrow.SetActive(true);
-                rightArrow.SetActive(true);
-                boxTransform.SetActive(true);
+                leftArrow.gameObject.SetActive(true);
+                rightArrow.gameObject.SetActive(true);
+                boxTransform.gameObject.SetActive(true);
                 boxTransform.localPosition = Vector3.zero;
 
-                uiMaskImage.SetActive(true);
+                uiMaskImage.gameObject.SetActive(true);
                 uiMaskImage.sprite = circleMaskImage;
                 uiMaskImage.rectTransform.sizeDelta = new Vector2(90, 90);
                 break;
             case TutorialManager.TutorialState.TapToBreak:
-                leftArrow.SetActive(false);
-                rightArrow.SetActive(false);
-                handTransform.SetActive(true);
+                leftArrow.gameObject.SetActive(false);
+                rightArrow.gameObject.SetActive(false);
+                handTransform.gameObject.SetActive(true);
                 handTransform.localPosition = new Vector3(470, -95, 0);
                 handTransform.rotation = Quaternion.Euler(0, 0, 30);
                 boxTransform.localPosition = new Vector3(470, 150, 0);
@@ -67,16 +67,16 @@ public class TutorialWindow : MonoBehaviour
                 uiMaskImage.rectTransform.pivot = Vector2.one;
                 uiMaskImage.rectTransform.anchoredPosition = Vector3.zero;
 
-                handTransform.SetActive(true);
+                handTransform.gameObject.SetActive(true);
                 handTransform.position = GetBottomLeftPoint(uiMaskImage.rectTransform);
                 handTransform.rotation = Quaternion.Euler(0, 0, -60);
 
-                boxTransform.SetActive(true);
+                boxTransform.gameObject.SetActive(true);
                 boxTransform.pivot = new Vector2(0.5f, 1);
                 boxTransform.position = GetBottomRightPosition(handTransform);
                 break;
             case TutorialManager.TutorialState.MotorbikeBattery:
-                uiMaskImage.SetActive(true);
+                uiMaskImage.gameObject.SetActive(true);
                 uiMaskImage.sprite = rectangleMaskImage;
                 uiMaskImage.rectTransform.sizeDelta = new Vector2(500, 125);
 
@@ -85,16 +85,16 @@ public class TutorialWindow : MonoBehaviour
                 uiMaskImage.rectTransform.pivot = new Vector2(0.5f, 1);
                 uiMaskImage.rectTransform.anchoredPosition = Vector3.zero;
 
-                handTransform.SetActive(true);
+                handTransform.gameObject.SetActive(true);
                 handTransform.position = GetBottomCenterPosition(uiMaskImage.rectTransform);
                 handTransform.rotation = Quaternion.Euler(0, 0, 0);
 
-                boxTransform.SetActive(true);
+                boxTransform.gameObject.SetActive(true);
                 boxTransform.pivot = new Vector2(0.5f, 1);
                 boxTransform.position = new Vector3(GetBottomCenterPosition(handTransform).x + 20, GetBottomCenterPosition(handTransform).y - 20);
                 break;
             default:
-                transform.SetActive(false);
+                transform.gameObject.SetActive(false);
                 break;
         }
 
@@ -147,15 +147,15 @@ public class TutorialWindow : MonoBehaviour
 
     private IEnumerator MoveHand(Enemy enemy, float delayTime)
     {
-        handTransform.SetActive(false);
-        boxTransform.SetActive(false);
-        uiMaskImage.SetActive(false);
+        handTransform.gameObject.SetActive(false);
+        boxTransform.gameObject.SetActive(false);
+        uiMaskImage.gameObject.SetActive(false);
 
         yield return new WaitForSecondsRealtime(delayTime);
 
-        handTransform.SetActive(true);
-        boxTransform.SetActive(true);
-        uiMaskImage.SetActive(true);
+        handTransform.gameObject.SetActive(true);
+        boxTransform.gameObject.SetActive(true);
+        uiMaskImage.gameObject.SetActive(true);
 
         Vector3 enemyPos = Camera.main.WorldToScreenPoint(enemy.Head.transform.position);
         handTransform.position = enemyPos;
@@ -170,7 +170,7 @@ public class TutorialWindow : MonoBehaviour
     {
         foreach(Transform child in transform)
         {
-            child.SetActive(false);
+            child.gameObject.SetActive(false);
         }
     }
 }

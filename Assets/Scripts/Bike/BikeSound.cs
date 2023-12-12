@@ -50,7 +50,7 @@ public class BikeSound : MonoBehaviour
         bool shouldBeMuted = !PlayerPrefsUtil.GetSoundsEnabled() || Time.timeScale == 0
             || StateManager.CurrentState is MainMenuState; //TODO: Remove currentState check when possible
 
-        ecs.SetActive(!shouldBeMuted);
+        ecs.gameObject.SetActive(!shouldBeMuted);
         return shouldBeMuted;
     }
 }

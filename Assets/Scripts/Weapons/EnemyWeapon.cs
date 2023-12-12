@@ -13,7 +13,7 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            _weaponLaser?.SetActive(false);
+            _weaponLaser?.gameObject.SetActive(false);
         }
 
         public void Fire(Transform target)

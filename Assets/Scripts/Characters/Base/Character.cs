@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public abstract class CharacterController : MonoBehaviour
+    public abstract class Character : MonoBehaviour
     {
         protected const string IDLE = "Idle";
         protected const string AIM_FORWARD = "Aim Forward";

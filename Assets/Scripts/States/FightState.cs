@@ -38,7 +38,7 @@ public class FightState : BaseState
     private void SetFightState(bool state)
     {
         GameSceneManager.Instance.SlowMotion.SetSlowMotionState(state);
-        GameSceneManager.Instance.FollowVirtualCamera.SetActive(!state);
-        GameSceneManager.Instance.AimVirtualCamera.SetActive(state);
+        GameSceneManager.Instance.FollowVirtualCamera.gameObject.SetActive(!state);
+        GameSceneManager.Instance.AimVirtualCamera.gameObject.SetActive(state);
     }
 }

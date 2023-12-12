@@ -4,7 +4,7 @@ using System;
 
 namespace Assets.Scripts
 {
-    public class Player : CharacterController
+    public class Player : Character
     {
         [SerializeField] private PlayerWeaponInitializer _weaponInitializer;
         

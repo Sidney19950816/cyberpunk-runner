@@ -82,7 +82,7 @@ public class VirtualShopItemView : BaseView
         SetButtonState(buyItemButton, () => EconomyManager.Instance.OnPurchaseClicked(inventoryItem, () => OnPurchaseButtonClick(inventoryItem, shopCategory)), playersInventoryItem == null);
         SetSelectItemButtonState(() => OnSelectButtonClick(inventoryItem, shopCategory), playersInventoryItem != null, Util.GetSelectedItemId(shopCategory.ToString()) != inventoryItem.Id);
 
-        lockIcon.SetActive(playersInventoryItem == null);
+        lockIcon.gameObject.SetActive(playersInventoryItem == null);
 
         string jsonData = playersInventoryItem?.InstanceData.GetAsString() ?? inventoryItem.CustomDataDeserializable.GetAsString();
 
@@ -232,9 +232,9 @@ public class VirtualShopItemView : BaseView
             buyIAPButtonPriceText.text = $"${weaponData.price}";
             if(isItemIAP)
             {
-                buyItemButton.SetActive(false);
+                buyItemButton.gameObject.SetActive(false);
             }
-            buyIAPButton.SetActive(isItemIAP);
+            buyIAPButton.gameObject.SetActive(isItemIAP);
         }
     }
 
@@ -258,9 +258,9 @@ public class VirtualShopItemView : BaseView
             buyIAPButtonPriceText.text = $"${motorbikeData.price}";
             if (isItemIAP)
             {
-                buyItemButton.SetActive(false);
+                buyItemButton.gameObject.SetActive(false);
             }
-            buyIAPButton.SetActive(isItemIAP);
+            buyIAPButton.gameObject.SetActive(isItemIAP);
         }
     }
 

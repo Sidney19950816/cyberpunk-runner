@@ -23,7 +23,7 @@ public class EnemyHealthUI : MonoBehaviour
         {
             Construct(health);
 
-            _healthBar.transform.parent.SetActive(false);
+            _healthBar.transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -35,7 +35,7 @@ public class EnemyHealthUI : MonoBehaviour
                 .DOFillAmount(_health.Current / _health.Max, 1 * Time.timeScale);
         }
 
-        _healthBar.transform.parent
+        _healthBar.transform.parent.gameObject
             .SetActive(_health.Current <= 0 ? false : true);
     }
 }

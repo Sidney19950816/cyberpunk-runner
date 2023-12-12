@@ -29,7 +29,7 @@ public class AttributeItemView : BaseBehaviour
         if(upgradeButtonView == null)
             upgradeButtonView = Instantiate(upgradeButtonGameObject, upgradesLayout).GetComponent<UpgradeButtonView>();
 
-        upgradeButtonView.SetActive(!string.IsNullOrEmpty(playersInventoryItemId) && value < maxUpgradeableValue);
+        upgradeButtonView.gameObject.SetActive(!string.IsNullOrEmpty(playersInventoryItemId) && value < maxUpgradeableValue);
         upgradeButtonView.Initialize(attribute, itemData, playersInventoryItemId, () => OnUpgradeComplete(attribute, itemData, playersInventoryItemId, upgradesLayout));
     }
 

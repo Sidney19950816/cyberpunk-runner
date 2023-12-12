@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Assets.Scripts
 {
-    public class Enemy : CharacterController
+    public class Enemy : Character
     {
         [Space, Header("Enemy Properties")]
         [SerializeField] private EnemyHead _head;

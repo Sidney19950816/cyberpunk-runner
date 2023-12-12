@@ -70,14 +70,14 @@ public class TopBarView : BaseView
             int batteryCount = eventManager.batteryCount;
             foreach (Transform child in batteryLayoutGroup.transform)
             {
-                child.SetActive(batteryCount-- > 0);
+                child.gameObject.SetActive(batteryCount-- > 0);
             }
         }
         else
         {
             foreach(Transform child in batteryLayoutGroup.transform)
             {
-                child.SetActive(false);
+                child.gameObject.SetActive(false);
             }
         }
     }

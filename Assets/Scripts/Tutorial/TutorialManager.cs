@@ -44,7 +44,7 @@ public class TutorialManager : MonoBehaviour
         switch (currentState)
         {
             case TutorialState.TiltPhone:
-                if (Input.acceleration.x.Abs() > 0.5f)
+                if (Mathf.Abs(Input.acceleration.x) > 0.5f)
                 {
                     MoveToNextState(5);
                     Time.timeScale = 1;
@@ -163,7 +163,7 @@ public class TutorialManager : MonoBehaviour
 
     private void UpdateInstructionText()
     {
-        tutorialWindow.SetActive(true);
+        tutorialWindow.gameObject.SetActive(true);
         tutorialWindow.SetState(currentState, GetInstructionText(currentState));
     }
 
@@ -204,7 +204,7 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator MoveToNextStateCoroutine(float delay)
     {
-        tutorialWindow.SetActive(false);
+        tutorialWindow.gameObject.SetActive(false);
         yield return new WaitForSeconds(delay);
 
         MoveToNextState();
