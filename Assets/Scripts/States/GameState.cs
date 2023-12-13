@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class GameState : BaseState 
 {
-    public Assets.Scripts.ArcadeBike Bike { get; private set; }
+    public Assets.Scripts.Bike Bike { get; private set; }
 
-    public GameState(Assets.Scripts.ArcadeBike bike)
+    public GameState(Assets.Scripts.Bike bike)
     {
         Bike = bike;
     }

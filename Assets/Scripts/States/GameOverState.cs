@@ -3,9 +3,9 @@ using Assets.Scripts.Managers;
 
 public class GameOverState : BaseState
 {
-    public ArcadeBike Bike { get; private set; }
+    public Bike Bike { get; private set; }
 
-    public GameOverState(ArcadeBike bike)
+    public GameOverState(Bike bike)
     {
         Bike = bike;
     }

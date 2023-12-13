@@ -25,7 +25,7 @@ public class FightState : BaseState
         SetFightState(true);
         savedVelocity = Bike.Rigidbody.velocity;
         Bike.Rigidbody.velocity = savedVelocity * 0.2f;
-        Bike.Collider.enabled = false;
+        Bike.TriggerCollider.enabled = false;
     }
 
     public override void OnStateExit()

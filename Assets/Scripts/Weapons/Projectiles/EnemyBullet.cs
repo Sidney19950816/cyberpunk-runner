@@ -29,7 +29,7 @@ namespace Assets.Scripts
         {
             if (other.gameObject.CompareTag(UtilConstants.PLAYER))
             {
-                StateManager.SetState(new GameOverState(other.GetComponent<ArcadeBike>()));
+                StateManager.SetState(new GameOverState(other.GetComponent<Bike>()));
                 Instantiate(Resources.Load($"Particles/Weapon/Hit/EnemyHit"), transform.position, transform.rotation);
                 Destroy(gameObject);
             }

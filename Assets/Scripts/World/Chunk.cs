@@ -13,16 +13,22 @@ namespace Assets.Scripts.World
         private ActionSceneSpawner[] _actionSceneSpawners;
 
         [SerializeField] [UsedImplicitly] private BikeTrigger _startTrigger;
+        [SerializeField] [UsedImplicitly] private Transform _endPoint;
 
         public Action OnChunkDisable;
         public Action<Chunk> OnChunkEnter;
 
-        [SerializeField] [UsedImplicitly] private Transform _endPoint;
-        
+        public Transform StartPoint => _startTrigger.transform;
+        public Transform EndPoint => _endPoint;
+
+        public bool IsCurved() => StartPoint.forward != EndPoint.forward;
+
+
         public void Initialize()
         {
             _startTrigger.OnTrigger += () => OnChunkEnter?.Invoke(this);
-            _startTrigger.OnTriggerT += bike => bike.SetResetPosition(_startTrigger.transform, _endPoint.transform);
+            _startTrigger.OnTriggerT += bike => bike.OnChunkEnter(this);
+            _startTrigger.OnTrigger += ChunkTracker.IncrementPassedChunks;
 
             _actionSceneSpawners = gameObject.GetComponentsInChildren<ActionSceneSpawner>();
             OnChunkEnter += DisableCollider;

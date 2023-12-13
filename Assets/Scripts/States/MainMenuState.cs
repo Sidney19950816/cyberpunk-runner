@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class MainMenuState : BaseState
 {
-    private ArcadeBike Bike;
+    private Bike Bike;
 
     public MainMenuState()
     {
@@ -100,9 +100,7 @@ public class MainMenuState : BaseState
         MotorbikeData bikeData = JsonUtility.FromJson<MotorbikeData>(jsonData);
 
         GameObject bikeObject = (GameObject)Object.Instantiate(Resources.Load($"Game/Bike/{Util.GetSelectedItemId("BIKE")}"));
-        Bike = bikeObject.GetComponent<ArcadeBike>();
-        Bike.Init(bikeData);
-        Bike.Rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
-        Bike.enabled = false;
+        Bike = bikeObject.GetComponent<Bike>()
+            .With(b => b.Initialize(bikeData));
     }
 }

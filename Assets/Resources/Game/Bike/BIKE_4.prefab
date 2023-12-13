@@ -207,12 +207,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1022489110992057193}
   - component: {fileID: 394993785443101136}
-  - component: {fileID: 394993785443101141}
-  - component: {fileID: 394993785443101140}
-  - component: {fileID: 394993785443101143}
-  - component: {fileID: 394993785443101142}
   - component: {fileID: 394993785443101137}
+  - component: {fileID: 2839051976067642083}
+  - component: {fileID: 394993785443101143}
   - component: {fileID: 8658815649388735526}
+  - component: {fileID: 6667876272129933587}
+  - component: {fileID: 9056664103938669879}
+  - component: {fileID: 4154428359610398634}
+  - component: {fileID: 394993785443101142}
   m_Layer: 0
   m_Name: BIKE_4
   m_TagString: Player
@@ -271,7 +273,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
---- !u!114 &394993785443101141
+--- !u!65 &394993785443101137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394993785443101139}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3, z: 6}
+  m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!114 &2839051976067642083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,63 +306,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b38c676bed96d9488e7f7976e280dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2043487903242217555}
-  _ground:
-    serializedVersion: 2
-    m_Bits: 2048
-  _rigidBody: {fileID: 394993785443101136}
-  _collider: {fileID: 0}
-  <FightOffset>k__BackingField: 0
-  <AirForce>k__BackingField: 8
-  resetTime: 1
---- !u!114 &394993785443101140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394993785443101139}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b2e8893a3093437d9d101b53db56941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _followCam: {fileID: 8858059772270156468}
-  _aimCam: {fileID: 4313810656162971050}
-  player: {fileID: 2043487903242217555}
-  baseStats:
-    TopSpeed: 15
-    Acceleration: 5
-    ReverseSpeed: 10
-    ReverseAcceleration: 3
-    AccelerationCurve: 0.5
-    Braking: 6
-    CoastingDrag: 5
-    Grip: 0.95
-    Steer: 5
-    AddedGravity: 1
-    MaxHealth: 0
-    Health: 0
-  m_VisualWheels:
+  _visualWheels:
   - {fileID: 5221093616226342694}
   - {fileID: 5221093615439695874}
-  CenterOfMass: {fileID: 5221093616907921554}
-  AirborneReorientationCoefficient: 1
-  DriftGrip: 0.85
-  DriftAdditionalSteer: 0
-  MinAngleToFinishDrift: 29
-  MinSpeedPercentToFinishDrift: 0.95
-  DriftControl: 16
-  DriftDampening: 8
-  SuspensionHeight: 0.1
-  SuspensionSpring: 70000
-  SuspensionDamp: 5000
-  WheelsPositionVerticalOffset: 0.05
-  FrontWheel: {fileID: 5221093616050126434}
-  RearWheel: {fileID: 5221093616939381734}
-  GroundLayers:
+  _centerOfMass: {fileID: 5221093616907921554}
+  _rigidBody: {fileID: 394993785443101136}
+  _airborneCoefficient: 1
+  _frontWheel: {fileID: 5221093616050126434}
+  _rearWheel: {fileID: 5221093616939381734}
+  _groundLayers:
     serializedVersion: 2
-    m_Bits: 262131
+    m_Bits: 2049
+  _driftGrip: 0.85
+  _driftAdditionalSteer: 0
+  _minAngleToFinishDrift: 29
+  _minSpeedPercentToFinishDrift: 0.95
+  _driftControl: 16
+  _driftDampening: 8
+  _suspensionHeight: 0.1
+  _suspensionSpring: 70000
+  _suspensionDamp: 5000
+  wheelsPositionVerticalOffset: 0.05
+  _followCam: {fileID: 8858059772270156468}
+  _aimCam: {fileID: 4313810656162971050}
+  _player: {fileID: 2043487903242217555}
+  _fightOffset: 0
   BikeStats:
     TopSpeed: 0
     Acceleration: 0
@@ -365,48 +356,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1ab8e2625429348a7503c580e3f9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bikeController: {fileID: 394993785443101140}
-  steeringAnimationDamping: 10
-  maxSteeringAngle: 30
-  frontWheel:
+  _steeringAnimationDamping: 10
+  _maxSteeringAngle: 30
+  _frontWheel:
     wheelTransform: {fileID: 5221093616226342695}
     wheelCollider: {fileID: 5221093616050126434}
-  rearWheel:
+  _rearWheel:
     wheelTransform: {fileID: 5221093615439695875}
     wheelCollider: {fileID: 5221093616939381734}
---- !u!114 &394993785443101142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394993785443101139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a15cc26383ce5a47b722077c945de4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &394993785443101137
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394993785443101139}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 3, z: 6}
-  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!114 &8658815649388735526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,10 +377,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ecs: {fileID: 5848328083303228848}
-  arcadeBike: {fileID: 394993785443101140}
   rearWheelCollider: {fileID: 5221093616939381734}
   idleClip: {fileID: 8300000, guid: 85ca3ed268819344794c7074a395d632, type: 3}
   windNoiseClip: {fileID: 8300000, guid: d469136b49d2d694fb025487439e48f9, type: 3}
+--- !u!114 &6667876272129933587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394993785443101139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e99a1d6d2b6ef468b18af6a36b6ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _max: 0
+  _current: 0
+--- !u!114 &9056664103938669879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394993785443101139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42568c5ee0907174ea7fd07cdf9bc392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 6667876272129933587}
+--- !u!114 &4154428359610398634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394993785443101139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad72736a8151595428d55a9fc812c888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resetTime: 1
+--- !u!114 &394993785443101142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394993785443101139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a15cc26383ce5a47b722077c945de4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &541228769022852861
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ namespace Assets.Scripts
                         e.Weapon.Fire(Bike.Player.transform);
                     }
                     _fightStarted = false;
-                    Bike.Collider.enabled = true;
+                    Bike.TriggerCollider.enabled = true;
                 }
 
                 if (_enemies.OfType<EnemyPathFollower>().Any()) // better solution
@@ -62,7 +62,7 @@ namespace Assets.Scripts
                 }
             }
 
-            EventsService.EnemyTypeAsync(Bike.GetPassedChunksCount() / RemoteConfigManager.Instance.EnemyHealthIncreaseInterval + 1);
+            EventsService.EnemyTypeAsync(ChunkTracker.GetPassedChunksCount() / RemoteConfigManager.Instance.EnemyHealthIncreaseInterval + 1);
         }
 
         private void SetCameraLookAt(Transform lookAtTransform)
@@ -142,7 +142,7 @@ namespace Assets.Scripts
             {
                 e.gameObject.SetActive(true);
                 e.GetComponent<EnemyDeath>().Died += OnEnemyKill;
-                e.GetComponent<IHealth>().InitializeHealth(Bike.GetPassedChunksCount());
+                e.GetComponent<IHealth>().InitializeHealth(ChunkTracker.GetPassedChunksCount());
                 e.Aim.Set(Bike.Player.transform);
             }
 
@@ -151,10 +151,10 @@ namespace Assets.Scripts
 
         protected override void OnSceneEnd()
         {
-            StateManager.SetState(new GameState(Bike.GetComponent<ArcadeBike>()));
+            StateManager.SetState(new GameState(Bike));
 
             _fightStarted = false;
-            Bike.Collider.enabled = true;
+            Bike.TriggerCollider.enabled = true;
             Bike.Player.Aim.Reset();
         }
     }

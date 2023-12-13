@@ -13,65 +13,65 @@ namespace Assets.Scripts
             [Tooltip("A reference to the WheelCollider of the wheel.")]
             public WheelCollider wheelCollider;
             
-            Quaternion m_SteerlessLocalRotation;
+            Quaternion _steerlessLocalRotation;
 
-            public void Setup() => m_SteerlessLocalRotation = wheelTransform.localRotation;
+            public void Setup() => _steerlessLocalRotation = wheelTransform.localRotation;
 
-            public void StoreDefaultRotation() => m_SteerlessLocalRotation = wheelTransform.localRotation;
-            public void SetToDefaultRotation() => wheelTransform.localRotation = m_SteerlessLocalRotation;
+            public void StoreDefaultRotation() => _steerlessLocalRotation = wheelTransform.localRotation;
+            public void SetToDefaultRotation() => wheelTransform.localRotation = _steerlessLocalRotation;
         }
-
-        [Tooltip("What bike do we want to listen to?")]
-        public ArcadeBike bikeController;
 
         [Space]
         [Tooltip("The damping for the appearance of steering compared to the input.  The higher the number the less damping.")]
-        public float steeringAnimationDamping = 10f;
+        [SerializeField] private float _steeringAnimationDamping = 10f;
 
         [Space]
         [Tooltip("The maximum angle in degrees that the front wheels can be turned away from their default positions, when the Steering input is either 1 or -1.")]
-        public float maxSteeringAngle;
+        [SerializeField] private float _maxSteeringAngle;
         [Tooltip("Information referring to the front wheel of the bike.")]
-        public Wheel frontWheel;
+        [SerializeField] private Wheel _frontWheel;
         [Tooltip("Information referring to the rear wheel of the bike.")]
-        public Wheel rearWheel;
+        [SerializeField] private Wheel _rearWheel;
 
-        float m_SmoothedSteeringInput;
+        private Bike _bike;
+        private float _smoothedSteeringInput;
 
-        void Start()
+        private void Start()
         {
-            frontWheel.Setup();
-            rearWheel.Setup();
+            _bike = GetComponent<Bike>();
+
+            _frontWheel.Setup();
+            _rearWheel.Setup();
         }
 
-        void FixedUpdate() 
+        private void FixedUpdate() 
         {
-            m_SmoothedSteeringInput = Mathf.MoveTowards(m_SmoothedSteeringInput, bikeController.Input.TurnInput, 
-                steeringAnimationDamping * Time.deltaTime);
+            _smoothedSteeringInput = Mathf.MoveTowards(_smoothedSteeringInput, _bike.Input.TurnInput, 
+                _steeringAnimationDamping * Time.deltaTime);
 
             // Steer front wheel
-            float rotationAngle = m_SmoothedSteeringInput * maxSteeringAngle;
-            frontWheel.wheelCollider.steerAngle = rotationAngle;
+            float rotationAngle = _smoothedSteeringInput * _maxSteeringAngle;
+            _frontWheel.wheelCollider.steerAngle = rotationAngle;
 
             // Tilt the bike if the wheels are grounded
-            if(bikeController.GroundPercent == 1)
+            if(_bike.GroundPercent == 1)
             {
                 transform.rotation = GetBikeRotation(rotationAngle * 2);
             }
 
             // Update position and rotation from WheelCollider
-            UpdateWheelFromCollider(frontWheel);
-            UpdateWheelFromCollider(rearWheel);
+            UpdateWheelFromCollider(_frontWheel);
+            UpdateWheelFromCollider(_rearWheel);
         }
 
-        void LateUpdate()
+        private void LateUpdate()
         {
             // Update position and rotation from WheelCollider
-            UpdateWheelFromCollider(frontWheel);
-            UpdateWheelFromCollider(rearWheel);
+            UpdateWheelFromCollider(_frontWheel);
+            UpdateWheelFromCollider(_rearWheel);
         }
 
-        void UpdateWheelFromCollider(Wheel wheel)
+        private void UpdateWheelFromCollider(Wheel wheel)
         {
             wheel.wheelCollider.GetWorldPose(out Vector3 position, out Quaternion rotation);
             wheel.wheelTransform.position = position;
@@ -80,11 +80,11 @@ namespace Assets.Scripts
 
         private Quaternion GetBikeRotation(float rotationAngle)
         {
-            float zRot = bikeController.Rigidbody.velocity.magnitude > 1 ? -rotationAngle : 0;
+            float zRot = _bike.Rigidbody.velocity.magnitude > 1 ? -rotationAngle : 0;
             Quaternion toRot = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, zRot);
 
-            if (bikeController.Rigidbody.velocity.magnitude > 1)
-                return Quaternion.Slerp(transform.rotation, toRot, Time.fixedDeltaTime * bikeController.LocalSpeed());
+            if (_bike.Rigidbody.velocity.magnitude > 1)
+                return Quaternion.Slerp(transform.rotation, toRot, Time.fixedDeltaTime * _bike.LocalSpeed());
             else
                 return Quaternion.Slerp(transform.rotation, toRot, Time.fixedDeltaTime * 5); // Should this be a constant number?
         }

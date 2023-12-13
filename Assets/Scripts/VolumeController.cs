@@ -10,10 +10,10 @@ public class VolumeController : MonoBehaviour
     private VolumeProfile volumeProfile;
     private MotionBlur motionblur;
     private LensDistortion lensDistortion;
-    private ArcadeBike arcadeBike;
+    private Bike arcadeBike;
     private bool slowMotion;
 
-    public void SetBike(ArcadeBike bike)
+    public void SetBike(Bike bike)
     {
         arcadeBike = bike;
     }

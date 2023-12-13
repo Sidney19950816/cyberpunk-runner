@@ -6,16 +6,19 @@ using Assets.Scripts.Managers;
 public class BikeSound : MonoBehaviour
 {
     [SerializeField] ElectricCarSounds ecs;
-    [SerializeField] private ArcadeBike arcadeBike;
     [SerializeField] private WheelCollider rearWheelCollider;
 
     [Space, Header("AUDIO CLIPS")]
     [SerializeField] AudioClip idleClip;
     [SerializeField] AudioClip windNoiseClip;
 
+    private Bike bike;
+
     private void Start()
     {
-        float maxSpeed = arcadeBike.GetMaxSpeed() * 3.6f; // TODO: Remove 3.6f when KMH/MPH are implemented
+        bike = GetComponent<Bike>();
+
+        float maxSpeed = bike.TopSpeed;
         ecs.maxTreshold = maxSpeed * 3; // Multiplied by 3 to get the low/medium load in ElectricCarSounds
         ecs.windNoiseClip = windNoiseClip;
         ecs.idleClip = idleClip;
@@ -25,13 +28,13 @@ public class BikeSound : MonoBehaviour
     {
         if (ShouldBeMuted()) return;
 
-        ecs.currentSpeed = arcadeBike.CurrentSpeed * 3.6f;
+        ecs.currentSpeed = bike.CurrentSpeed * 3.6f;
 
-        if (arcadeBike.Input.Accelerate) // gas pedal is pressing
+        if (bike.Input.Accelerate) // gas pedal is pressing
         {
             ecs.gasPedalPressing = true;
         }
-        else if (!arcadeBike.Input.Accelerate && !arcadeBike.Input.Brake) // gas pedal is not pressing
+        else if (!bike.Input.Accelerate && !bike.Input.Brake) // gas pedal is not pressing
         {
             ecs.gasPedalPressing = false;
             if (rearWheelCollider.motorTorque > 0)

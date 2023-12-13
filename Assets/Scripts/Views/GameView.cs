@@ -17,7 +17,7 @@ public class GameView : BaseView
     [SerializeField] private Slider speedSlider;
     [SerializeField] private TextMeshProUGUI speedText;
 
-    private ArcadeBike arcadeBike;
+    private Bike arcadeBike;
 
     public override void UpdateView(BaseState state)
     {
@@ -53,13 +53,13 @@ public class GameView : BaseView
             if (gameState.Bike != null)
             {
                 gameState.Bike.Player.Score.OnUpdate += simulatedCurrencyItem.SetBalance;
-                gameState.Bike.OnHealthUpdate += UpdateHealthValue;
+                gameState.Bike.Health.HealthChanged += () => UpdateHealthValue(gameState.Bike.Health.Current);
 
-                healthSlider.value = healthSlider.maxValue = gameState.Bike.BikeStats.MaxHealth;
-                motorbikeFillImage.fillAmount = gameState.Bike.BikeStats.Health / gameState.Bike.BikeStats.MaxHealth;
+                healthSlider.value = healthSlider.maxValue = gameState.Bike.Health.Max;
+                motorbikeFillImage.fillAmount = gameState.Bike.Health.Current / gameState.Bike.Health.Max;
 
-                speedText.text = $"{(gameState.Bike.BikeStats.Health / gameState.Bike.BikeStats.MaxHealth).ToInt() * 100}";
-                speedSlider.maxValue = gameState.Bike.BikeStats.TopSpeed * 3.6f;
+                speedText.text = $"{(gameState.Bike.Health.Current / gameState.Bike.Health.Max).ToInt() * 100}";
+                speedSlider.maxValue = gameState.Bike.TopSpeed;
 
                 arcadeBike = gameState.Bike;
             }
