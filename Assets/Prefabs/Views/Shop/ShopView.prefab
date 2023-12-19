@@ -10077,6 +10077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6330567539044058440}
   - component: {fileID: 2772846623824286373}
+  - component: {fileID: 7068128750096600181}
   m_Layer: 5
   m_Name: ShopView
   m_TagString: Untagged
@@ -10101,7 +10102,7 @@ RectTransform:
   - {fileID: 6330567538518411216}
   - {fileID: 2301403390586369793}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10127,7 +10128,18 @@ MonoBehaviour:
   consumablePanel: {fileID: 755191183906215341}
   shopPackPrefab: {fileID: 7906425588783452941, guid: e1fe8d6c5c459408b827324a8fc9f579, type: 3}
   shopCurrencyPrefab: {fileID: 351592697918235473, guid: f8d5698d053c742968d51b5cef9dd0fb, type: 3}
-  targetTest: {fileID: 755191183906215341}
+--- !u!114 &7068128750096600181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330567539044058443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca9f00403596ba4fa9b53ed2a289481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6330567539222377859
 GameObject:
   m_ObjectHideFlags: 0
