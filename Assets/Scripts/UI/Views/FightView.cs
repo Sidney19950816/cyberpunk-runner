@@ -98,7 +98,7 @@ public class FightView : BaseView
 
             Player player = gameState?.Bike?.Player;
 
-            if (player == null)
+            if (player == null || player.Weapon == null)
                 return;
 
             player.Weapon.OnProjectileUpdateAction -= SetBulletsCount;

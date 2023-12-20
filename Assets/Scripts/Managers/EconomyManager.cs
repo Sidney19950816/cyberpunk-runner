@@ -315,42 +315,48 @@ public class EconomyManager : MonoBehaviour
 
     public async void OnPurchaseClicked(InventoryItemDefinition inventoryItem, Action callback = null)
     {
+        await OnPurchaseClickedAsync(inventoryItem, callback);
+    }
+
+    public async Task OnPurchaseClickedAsync(InventoryItemDefinition inventoryItem, Action callback = null)
+    {
         string inventoryItemId = $"VIRTUAL_SHOP_{inventoryItem.Id}";
 
         try
         {
-            if (virtualPurchaseTransactions == null)
-                InitializeVirtualPurchaseLookup();
+            await HandlePurchaseAsync(inventoryItemId);
 
-            foreach (ItemAndAmountData reward in virtualPurchaseTransactions[inventoryItemId].rewards)
-            {
-                if (reward.type == ItemAndAmountData.INVENTORY_ITEM)
-                {
-                    if (PlayersInventoryItems.FirstOrDefault(i => i.InventoryItemId == reward.id) != null)
-                        return;
-                }
-            }
-
-            var result = await MakeVirtualPurchaseAsync(inventoryItemId);
             if (this == null) return;
 
-            await RefreshCurrencyBalances();
-            await RefreshInventory();
-        }
-        catch (EconomyException e)
-        when (e.ErrorCode == k_EconomyPurchaseCostsNotMetStatusCode)
-        {
+            var playersInventoryItem = PlayersInventoryItems.Find(i => i.InventoryItemId == inventoryItem.Id);
+            if (playersInventoryItem == null) return;
+
+            UpdateInventoryItemAsync(playersInventoryItem.PlayersInventoryItemId, inventoryItem.CustomDataDeserializable, callback);
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
+    }
 
+    private async Task HandlePurchaseAsync(string inventoryItemId)
+    {
+        if (virtualPurchaseTransactions == null)
+            InitializeVirtualPurchaseLookup();
+
+        foreach (ItemAndAmountData reward in virtualPurchaseTransactions[inventoryItemId].rewards)
+        {
+            if (reward.type == ItemAndAmountData.INVENTORY_ITEM)
+            {
+                if (PlayersInventoryItems.FirstOrDefault(i => i.InventoryItemId == reward.id) != null)
+                    return;
+            }
+        }
+
+        var result = await MakeVirtualPurchaseAsync(inventoryItemId);
         if (this == null) return;
 
-        var playersInventoryItem = PlayersInventoryItems.Find(i => i.InventoryItemId == inventoryItem.Id);
-        if (playersInventoryItem == null) return;
-        
-        UpdateInventoryItemAsync(playersInventoryItem.PlayersInventoryItemId, inventoryItem.CustomDataDeserializable, callback);
+        await RefreshCurrencyBalances();
+        await RefreshInventory();
     }
 }

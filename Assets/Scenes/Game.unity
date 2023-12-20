@@ -2737,7 +2737,6 @@ MonoBehaviour:
   _locations:
   - {fileID: 11400000, guid: 49b9c2d98e2454eb6b5d8fc24e01f0aa, type: 2}
   - {fileID: 11400000, guid: 62e2e319a56bf4305838d97025000d0f, type: 2}
-  - {fileID: 11400000, guid: 6657ea5bd861d9c45ac011480fe56077, type: 2}
   chunks: []
 --- !u!1 &2095972522
 GameObject:

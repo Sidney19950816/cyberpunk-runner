@@ -10,23 +10,19 @@ namespace Assets.Scripts
         
         private PlayerAim _playerAim;
 
-        private PlayerScore _playerScore;
-
         public PlayerWeapon Weapon { get; private set; }
 
         public PlayerAim Aim => _playerAim;
 
-        public PlayerScore Score => _playerScore;
+        public PlayerScore Score { get; } = new PlayerScore(0);
 
-        public int Rokens => _playerScore?.Score ?? 0;
+        public int Rokens => Score?.Score ?? 0;
 
         protected override void Start()
         {
             base.Start();
 
             Weapon = _weaponInitializer.Initialize();
-
-            _playerScore = new PlayerScore(0);
 
             _playerAim = GetComponent<PlayerAim>()
                 .With(p => p.Initialize(Animator, IK, AimController));
@@ -35,7 +31,7 @@ namespace Assets.Scripts
         public void CollectRokens(int multiplier = 1)
         {
             EconomyManager.Instance.IncrementCurrencyBalance(CurrencyType.ROKEN.ToString(), Rokens * multiplier);
-            _playerScore.Reset();
+            Score.Reset();
         }
     }
 }
