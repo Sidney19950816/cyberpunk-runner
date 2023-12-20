@@ -237,9 +237,6 @@ namespace Assets.Scripts
 
             _health = GetComponent<IHealth>()
                 .With(h => h.InitializeHealth(BikeStats.MaxHealth));
-
-            Rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
-            enabled = false;
         }
 
         public float LocalSpeed()

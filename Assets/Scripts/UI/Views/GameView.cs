@@ -17,7 +17,7 @@ public class GameView : BaseView
     [SerializeField] private Slider speedSlider;
     [SerializeField] private TextMeshProUGUI speedText;
 
-    private Bike arcadeBike;
+    private Bike bike;
 
     public override void UpdateView(BaseState state)
     {
@@ -47,23 +47,22 @@ public class GameView : BaseView
         GameState gameState = state as GameState;
         simulatedCurrencyItem.transform.parent.SetParent(transform);
 
-        if (arcadeBike == null)
-        {
-            simulatedCurrencyItem.SetBalance(0);
-            if (gameState.Bike != null)
-            {
-                gameState.Bike.Player.Score.OnUpdate += simulatedCurrencyItem.SetBalance;
-                gameState.Bike.Health.HealthChanged += () => UpdateHealthValue(gameState.Bike.Health.Current);
+        if (bike != null) return;
 
-                healthSlider.value = healthSlider.maxValue = gameState.Bike.Health.Max;
-                motorbikeFillImage.fillAmount = gameState.Bike.Health.Current / gameState.Bike.Health.Max;
+        simulatedCurrencyItem.SetBalance(0);
 
-                speedText.text = $"{(gameState.Bike.Health.Current / gameState.Bike.Health.Max).ToInt() * 100}";
-                speedSlider.maxValue = gameState.Bike.TopSpeed;
+        if (gameState.Bike == null) return;
 
-                arcadeBike = gameState.Bike;
-            }
-        }
+        gameState.Bike.Player.Score.OnUpdate += simulatedCurrencyItem.SetBalance;
+        gameState.Bike.Health.HealthChanged += () => UpdateHealthValue(gameState.Bike.Health.Current);
+
+        healthSlider.value = healthSlider.maxValue = gameState.Bike.Health.Max;
+        motorbikeFillImage.fillAmount = gameState.Bike.Health.Current / gameState.Bike.Health.Max;
+
+        speedText.text = $"{(gameState.Bike.Health.Current / gameState.Bike.Health.Max).ToInt() * 100}";
+        speedSlider.maxValue = gameState.Bike.TopSpeed;
+
+        bike = gameState.Bike;
     }
 
     void UpdateHealthValue(float value)
@@ -74,10 +73,10 @@ public class GameView : BaseView
 
     private void Update()
     {
-        if(arcadeBike != null)
+        if(bike != null)
         {
-            speedSlider.value = arcadeBike.Rigidbody.velocity.magnitude * 3.6f;
-            speedText.text = $"{(arcadeBike.Rigidbody.velocity.magnitude * 3.6f).ToInt()} KM/H";
+            speedSlider.value = bike.Rigidbody.velocity.magnitude * 3.6f;
+            speedText.text = $"{(bike.Rigidbody.velocity.magnitude * 3.6f).ToInt()} KM/H";
         }
     }
 }

@@ -4,6 +4,8 @@ using Cinemachine;
 using System;
 using Assets.Scripts.World;
 using UnityEngine.UI;
+using System.Threading.Tasks;
+using Unity.Services.Economy.Model;
 
 namespace Assets.Scripts.Managers
 {
@@ -81,6 +83,7 @@ namespace Assets.Scripts.Managers
                 GameInitializationManager gameInitializationManager = new GameInitializationManager(this);
                 await gameInitializationManager.InitializeGameAsync();
                 await MotorbikeBattery.RefreshStatus();
+                await InitializeFirstInventoryPurchase();
 
                 if (slider != null)
                     slider.value = 1f;
@@ -113,6 +116,26 @@ namespace Assets.Scripts.Managers
             {
                 FacebookInitializer.InitializeFacebook();
             }
+        }
+
+        private async Task InitializeFirstInventoryPurchase()
+        {
+            //TEST
+            /*foreach (PlayersInventoryItem item in EconomyManager.Instance.PlayersInventoryItems)
+            {
+                EconomyManager.Instance.DeleteInventoryItemAsync(item.PlayersInventoryItemId);
+            }*/
+
+            if (EconomyManager.Instance.PlayersInventoryItems.Count > 0) return;
+
+            await EconomyManager.Instance.OnPurchaseClickedAsync(
+                EconomyManager.Instance.InventoryItemDefinitions
+                .Find(i => i.Id == "BIKE_0"), SetDefaultBike);
+        }
+
+        private void SetDefaultBike()
+        {
+            Util.SetSelectedItemId("BIKE", "BIKE_0");
         }
     }
 }
