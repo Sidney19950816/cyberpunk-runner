@@ -2211,6 +2211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6eb842ae80ce447a0455d050c59f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpdateTime: 0.3
 --- !u!114 &1572460044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2734,7 +2735,8 @@ MonoBehaviour:
   _tutorial:
   - {fileID: 8901003437281409497, guid: a6d100667458e7341a54b14d280a6c85, type: 3}
   _locations:
-  - {fileID: 11400000, guid: 098a032fc237fd64b8d26c844ad90134, type: 2}
+  - {fileID: 11400000, guid: 49b9c2d98e2454eb6b5d8fc24e01f0aa, type: 2}
+  - {fileID: 11400000, guid: 62e2e319a56bf4305838d97025000d0f, type: 2}
   chunks: []
 --- !u!1 &2095972522
 GameObject:

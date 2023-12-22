@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Assets.Scripts.Extensions;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets.Scripts.World
 {
@@ -29,16 +26,18 @@ namespace Assets.Scripts.World
         private Chunk _previous;
         private Chunk _current;
         private Chunk _next;
+        public List<Chunk> chunks = new List<Chunk>();
+        private int spawnedTimes;
+        private int spawnedChanks = 3;
 
-        private async void InitializeLocations()
+        private void InitializeLocations()
         {
-            if (!PlayerPrefsUtil.GetTutorialCompleted())
-            {
+            if(!PlayerPrefsUtil.GetTutorialCompleted()) {
                 InitializeTutorial();
             }
 
             foreach (var location in _locations)
-                await InitializeLocationAsync(location);
+                InitializeLocation(location);
 
             UpdateChunks();
         }
@@ -51,58 +50,23 @@ namespace Assets.Scripts.World
                 _queue.Enqueue(chunk);
         }
 
-        private async Task<Chunk> InitializeChunkAsync(AssetReferenceGameObject chunkReference, bool destroyOnDisable)
+        private void InitializeLocation(Location location)
         {
-            var operation = chunkReference.LoadAssetAsync<GameObject>();
-            await operation.Task;
+            var start = location.Start.Select(InitializeStartChunk).ToArray();
+            var body = location.Body.Select(InitializeBodyChunk).ToArray();
+            var end = location.End.Select(c => InitializeEndChunk(c,location)).ToArray();
 
-            if (operation.Status == AsyncOperationStatus.Succeeded)
-            {
-                var loadedChunk = Instantiate(operation.Result, transform);
-                var instance = loadedChunk.GetComponent<Chunk>();
-
-                instance.OnChunkEnter += OnChunkEnter;
-                instance.OnChunkDisable += destroyOnDisable ? instance.Destroy : instance.Disable;
-
-                instance.Initialize();
-                instance.Disable();
-
-                return instance;
-            }
-            else
-            {
-                Debug.LogError($"Failed to load chunk: {chunkReference.editorAsset}");
-                return null;
-            }
+            _locationChunks.Add(new LocationInstance(location,start,body,end));
         }
 
-        private async Task InitializeLocationAsync(Location location)
+        private Chunk InitializeStartChunk(Chunk chunk)
         {
-            var startChunks = await LoadChunksAsync(location.Start);
-            var bodyChunks = await LoadChunksAsync(location.Body);
-            var endChunks = await LoadChunksAsync(location.End);
-
-            _locationChunks.Add(new LocationInstance(location, startChunks, bodyChunks, endChunks));
+            return InitializeChunk(chunk,false);
         }
 
-        private async Task<List<Chunk>> LoadChunksAsync(IEnumerable<AssetReferenceGameObject> chunkReferences)
+        private Chunk InitializeBodyChunk(Chunk chunk)
         {
-            var loadTasks = chunkReferences.Select(chunkRef => InitializeChunkAsync(chunkRef, false));
-            var chunks = await Task.WhenAll(loadTasks);
-
-            return chunks.Where(chunk => chunk != null).ToList();
-        }
-
-        private async Task<Chunk> InitializeEndChunk(AssetReferenceGameObject chunkReference, Location location)
-        {
-            var instance = await InitializeChunkAsync(chunkReference, false);
-
-            if (instance != null)
-            {
-                instance.OnChunkDisable += () => _currentLocations.Remove(location);
-            }
-
-            return instance;
+            return InitializeChunk(chunk,false);
         }
 
         private Chunk InitializeEndChunk(Chunk chunk,Location location)
@@ -142,35 +106,48 @@ namespace Assets.Scripts.World
 
         private void UpdateChunks()
         {
-            if (_previous != null)
-                _previous.OnChunkDisable?.Invoke();
-
-            if (_current == null)
+            for (int i = 0; i < spawnedChanks; i++)
             {
-                EnqueueLocation();
+                if (spawnedTimes >= 2)
+                {
+                    var chunk = chunks[0];
+                    chunk.OnChunkDisable?.Invoke();
+                    chunks.RemoveAt(0);
+                    if(spawnedTimes == 2)
+                    chunks.RemoveAt(0);
+                }
 
-                _current = _queue.Dequeue();
-                _current.Enable();
-            }
-            else
-            {
-                _previous = _current;
-                _current = _next;
-
-                if (!_queue.Any())
+                if (_current == null)
+                {
                     EnqueueLocation();
-            }
 
-            _next = _queue.Dequeue();
+                    _current = _queue.Dequeue();
+                    chunks.Add(_current);
+                    _current.Enable();
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        _previous = _current;
+                    }
+                    _current = _next;
 
-            _next.Enable(_current);
+                    if (!_queue.Any())
+                        EnqueueLocation();
+                }              
+
+                _next = _queue.Dequeue();
+                _next.Enable(_current);
+                chunks.Add(_current);
+            }           
+            spawnedChanks = 1;
+            spawnedTimes++;
         }
 
         private void EnqueueLocation()
         {
-            var locationInstance = _currentLocations.Count > 1
-                ? _locationChunks.GetRandom(l => !_currentLocations.Contains(l.Location))
-                : _locationChunks[0];
+            var locationInstance = _locationChunks.GetRandom(l => !_currentLocations.Contains(l.Location));
 
             _currentLocations.Add(locationInstance.Location);
 
@@ -181,7 +158,7 @@ namespace Assets.Scripts.World
 
         private sealed class LocationInstance
         {
-            public LocationInstance(Location location, List<Chunk> start, List<Chunk> body, List<Chunk> end)
+            public LocationInstance(Location location, Chunk[] start, Chunk[] body, Chunk[] end)
             {
                 Location = location;
 
@@ -192,9 +169,9 @@ namespace Assets.Scripts.World
 
             public Location Location { get; }
 
-            public List<Chunk> Start { get; }
-            public List<Chunk> Body { get; }
-            public List<Chunk> End { get; }
+            public Chunk[] Start { get; }
+            public Chunk[] Body { get; }
+            public Chunk[] End { get; }
         }
     }
 }
