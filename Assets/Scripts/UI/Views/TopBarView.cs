@@ -55,9 +55,15 @@ public class TopBarView : BaseView
 
     public void UpdateStatus(MotorbikeBatteryEventManager eventManager)
     {
+        if (batteryLayoutGroup == null) return;
+
         if(eventManager.batteryCount > 0)
         {
-            addChargeButton.interactable = eventManager.batteryCount < 5;
+            if(addChargeButton != null)
+            {
+                addChargeButton.interactable
+                    = eventManager.batteryCount < 5;
+            }
 
             if(batteryLayoutGroup.transform.childCount == 0)
             {

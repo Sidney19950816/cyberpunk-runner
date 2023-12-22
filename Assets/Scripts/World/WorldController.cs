@@ -41,6 +41,7 @@ namespace Assets.Scripts.World
                 await InitializeLocationAsync(location);
 
             UpdateChunks();
+            StateManager.SetState(new GameState());
         }
 
         private void InitializeTutorial()
