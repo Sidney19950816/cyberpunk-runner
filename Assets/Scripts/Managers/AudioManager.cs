@@ -24,7 +24,6 @@ namespace Assets.Scripts.Managers
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(this);
             }
             else
             {

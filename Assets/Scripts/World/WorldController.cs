@@ -40,7 +40,6 @@ namespace Assets.Scripts.World
                 InitializeLocation(location);
 
             UpdateChunks();
-            StateManager.SetState(new GameState());
         }
 
         private void InitializeTutorial()

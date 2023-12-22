@@ -9,22 +9,9 @@ namespace Assets.Scripts
     public abstract class BaseBehaviour : MonoBehaviour
     {
         private IEventsService _eventsService;
-        protected IEventsService EventsService
-        {
-            get
-            {
-                _eventsService = SingleOrDefault<IEventsService>();
-
-                if (_eventsService == null)
-                {
-                    // If _eventsService is null, create a new instance and add the component.
-                    GameObject eventsServiceObject = new GameObject("EventsServiceObject");
-                    _eventsService = eventsServiceObject.AddComponent<MockEventsService>();
-                }
-
-                return _eventsService;
-            }
-        }
+        protected IEventsService EventsService =>
+            _eventsService ??=
+            Single<IEventsService>();
 
         protected T Single<T>(bool includeInactive = false) => 
             Find<T>(includeInactive).Single();
