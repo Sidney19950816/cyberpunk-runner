@@ -20,7 +20,8 @@ public class MainMenuState : BaseState
 
     public void OnStartButtonPressed()
     {
-        StateManager.SetState(new GameState());
+        //StateManager.SetState(new GameState());
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         GameSceneManager.Instance.MotorbikeBattery.OnStartButtonPressed();
     }
 

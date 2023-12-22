@@ -16,6 +16,8 @@ namespace Assets.Scripts
         private readonly List<Enemy> _enemies = new();
         private bool _fightStarted;
 
+        private Camera _mainCamera;
+
         [UsedImplicitly]
         private void Update()
         {
@@ -23,7 +25,7 @@ namespace Assets.Scripts
             {
                 if((Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && Bike.Player.Weapon.WeaponMode == WeaponMode.Automatic) && _remainingTime > 0)
                 {
-                    var ray = Managers.GameSceneManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
+                    var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
                     if (Physics.Raycast(ray, out var hitInfo))
                     {
@@ -126,6 +128,7 @@ namespace Assets.Scripts
 
             _enemies.AddRange(GetComponentsInChildren<Enemy>());
             Trigger.OnTriggerT += BeginScene;
+            _mainCamera = Camera.main;
         }
 
         protected override void OnSceneBegin()

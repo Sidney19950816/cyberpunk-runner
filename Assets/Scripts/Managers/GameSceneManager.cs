@@ -23,6 +23,7 @@ namespace Assets.Scripts.Managers
             else
             {
                 Instance = this;
+                DontDestroyOnLoad(this);
             }
 
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -58,7 +59,6 @@ namespace Assets.Scripts.Managers
 
         public MotorbikeBatteryManager MotorbikeBattery => motorbikeBattery;
 
-        public Camera MainCamera { get; private set; }
         public SlowMotion SlowMotion { get; private set; }
         public CinemachineVirtualCamera FollowVirtualCamera => followVirtualCamera;
         public CinemachineVirtualCamera AimVirtualCamera => aimVirtualCamera;
@@ -69,7 +69,6 @@ namespace Assets.Scripts.Managers
 
         async void Start()
         {
-            MainCamera = Camera.main;
             SlowMotion = GetComponent<SlowMotion>();
 
             GameObject loading = GameObject.Find("LoadingCanvas");
